@@ -26,7 +26,6 @@ dataset/data
 /.idea/misc.xml
 /.idea/modules.xml
 /.idea/vcs.xml
-/configs/config.yml
 err.log
 completed.log
 *.ini
