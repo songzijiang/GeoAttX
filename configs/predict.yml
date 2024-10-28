@@ -1,0 +1,52 @@
+model: 'geonet'
+task: 'pred'
+downstage: 2
+#task: 'prec'
+c_in: 7
+p_step: 12
+#model: 'unet'
+#model: 'swinir'
+n_lgab: 12
+c_lgan: 90
+window_sizes: [ 6,10,15 ]
+num_heads: 4
+down_sample: 5
+r_expand: 2
+
+fp: 32
+#loss: 'LatLonLoss()'
+loss: 'nn.SmoothL1Loss()'
+#loss: 'LatitudeLoss()'
+optimizer: 'AdamW'
+pretrain:
+resume:
+batch_size: 7
+balanced_gpu0: 1
+epochs: 30
+lr: 0.002
+decays: [15,20,25]
+#decays: [15,30,40]
+gamma: 0.5
+test_every: 1
+log_lines: 10
+log_path: "./experiments"
+log_name:
+cloudlog: off
+repeat: 1
+augment: 'off'
+
+# produce
+model_path: ''
+save_path: "/home/ubuntu/FYpredict/proc"
+current: 12
+
+## hardware specification
+# specify the GPUs you want to use. [0] means using the first GPU. [1,3] means using second and fourth GPU
+#gpu_ids: [ 3,0,1,2 ]
+gpu_ids: []
+threads: 0
+## data specification
+# the path train and test dateset. You can download the dataset in this project
+pred_data_path: '/mnt/data1/szj/FY/npy'
+prec_data_path: '/mnt/data1/szj/FY/prec'
+split_size: 50

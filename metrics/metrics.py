@@ -64,6 +64,6 @@ if __name__ == '__main__':
     # m = Metrics()
     # print(m.calc_rr(preds, target))
     m = Metrics()
-    img1 = img2tensor(r'C:\Users\ECNU\Desktop\fyp\target_20231220_053000-13.tif')
-    img2 = img2tensor(r'C:\Users\ECNU\Desktop\fyp\20231220_053000-13-4.tif')
+    img1 = img2tensor(r'target_20231220_053000-13.tif')
+    img2 = img2tensor(r'20231220_053000-13-4.tif')
     m.print_metrics(img2, img1)

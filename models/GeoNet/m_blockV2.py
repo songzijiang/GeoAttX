@@ -132,17 +132,6 @@ class Norm(nn.Module):
         x = self.norm(x)
         return x
 
-    # def __init__(self, c_in):
-    #     super(Norm, self).__init__()
-    #     self.norm = nn.LayerNorm(c_in, elementwise_affine=False)
-    #
-    # def forward(self, x):
-    #     b, c, h, w = x.shape
-    #     x = rearrange(x, 'b c h w->b (h w) c')
-    #     x = self.norm(x)
-    #     x = rearrange(x, 'b (h w) c->b c h w', w=w, h=h)
-    #     return x
-
 
 class CubeEmbeding(nn.Module):
     def __init__(self, c_lgan, c_in, down_sample=1):
@@ -225,25 +214,6 @@ class Tail(nn.Module):
         if self.down_sample != 1:
             x = self.ps(x)
         return x
-
-
-# class Tail(nn.Module):
-#     def __init__(self, c_lgan, c_in, down_sample):
-#         super(Tail, self).__init__()
-#         self.c_in = c_in
-#         self.down_sample = down_sample
-#         self.fc = nn.Linear(c_lgan, c_in * down_sample * down_sample)
-#         self.norm = nn.LayerNorm(c_lgan)
-
-# def forward(self, x):
-#     b, c, h, w = x.shape
-#     x = rearrange(x, 'b c h w->b (h w) c')
-#     x = self.norm(x)
-#     x = self.fc(x)
-#     x = rearrange(x, 'b (h w) (c d1 d2)->b c (d1 h) (d2 w)',
-#                   c=self.c_in, d1=self.down_sample, d2=self.down_sample, h=h, w=w)
-#     x = nn.functional.interpolate(x, size=[721, 1440], mode='bilinear')
-#     return x
 
 
 class FD(nn.Module):
@@ -340,18 +310,6 @@ class LGAB(nn.Module):
                        h=h // wsize, w=w // wsize, dh=wsize, dw=wsize, head=self.num_heads)
         return y_
 
-    # def forward(self, x, roll=False):
-    #     y_ = self.project_inp(x)
-    #     _, _, h, w = y_.shape
-    #     wsize = self.window_size
-    #     shifted window attention
-    # if roll:
-    #     y_ = torch.roll(y_, shifts=(-wsize // 2, -wsize // 2), dims=(2, 3))
-    # y_ = self.wa(y_, wsize, (h, w))
-    # if roll:
-    #     y_ = torch.roll(y_, shifts=(wsize // 2, wsize // 2), dims=(2, 3))
-    # y = self.project_out(y_)
-    # return y
     def forward(self, x):
         b, c, h, w = x.shape
         x_ = x

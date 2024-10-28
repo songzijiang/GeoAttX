@@ -40,14 +40,6 @@ class Benchmark(data.Dataset):
     def read_data(self, path):
         v = fnp.load(path).copy().astype(np.float32)
         print(f'[TemporaryTag] load {path}, total {len(self.cache.cache_list)}'.ljust(100), end='[TemporaryTag]\r')
-        # data_info = path.split(os.path.sep)
-        # year, month, day, idx \
-        #     = int(data_info[-4]), int(data_info[-3]), int(data_info[-2]), int(data_info[-1].replace('.npy', ''))
-        # date = datetime(year, month, day, idx // 4, idx % 4 * 15)
-        # print(1)
-        # alt = make_alt(self.coord, date.strftime('%Y-%m-%d %H:%M:%S')).astype(np.float32)
-        # alt = zoom(alt, 12)
-        # v = np.concatenate((alt[np.newaxis, :, :], v), axis=0).astype(np.float16)
         v = v[2:, :, :]
         # v[v < 2000] = 0
         self.cache.add_key(path, v)

@@ -244,15 +244,13 @@ class GeoAttX_P:
 if __name__ == '__main__':
     x1_path = '/home/ubuntu/FYpredict/experiments/predx1-geonet-2024-0903-1724-3260/models/model_40.pt'
     x4_path = '/home/ubuntu/FYpredict/experiments/predx4-geonet-2024-0718-2348-1154/models/model_latest.pt'
-    x12_path = '/home/ubuntu/FYpredict/experiments/predx12-geonet-2024-0715-2107-3133/models/model_latest.pt'
-    x48_path = '/home/ubuntu/FYpredict/experiments/x48/models/model_latest.pt'
+    x12_path = '/home/ubuntu/FYpredict/experiments/predx12-geonet-2024-0918-1440-2990/models/model_11.pt'
     default_file = 'FY4B-_AGRI--_N_DISK_1330E_L1-_FDI-_MULT_NOM_20231204000000_20231204001459_4000M_V0001.HDF'
     # default_file = 'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240601000000_20240601001459_4000M_V0001.HDF'
     default_minutes = 60
     x1_path = input(f'please input the X1 pretrained model: ({x1_path})') or x1_path
     x4_path = input(f'please input the X4 pretrained model: ({x4_path})') or x4_path
     x12_path = input(f'please input the X12 pretrained model: ({x12_path})') or x12_path
-    x48_path = input(f'please input the X48 pretrained model: ({x48_path})') or x48_path
     file_name = input(f'please input the filename of current data: ({default_file})') or default_file
     minutes = int(input(f'please input the minutes to predict: ({default_minutes})') or default_minutes)
     # data_path = '/mnt/data1/szj/FY/downloaded_file'
@@ -262,24 +260,16 @@ if __name__ == '__main__':
             file_name = f'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240808{i:02}{j * 15:02}00_20240808{i:02}{(j + 1) * 15 - 1:02}59_4000M_V0001.HDF'
             file_path = os.path.join(data_path, '2024', '8', '8', file_name)
             if os.path.exists(file_path):
-                I_net = GeoAttX_I(data_path, x1_path, x4_path, x12_path, x48_path,
+                I_net = GeoAttX_I(data_path, x1_path, x4_path, x12_path,
                                   root_path=f'/mnt/data1/szj/FY/240808/{i:02}{j * 15:02}')
                 ys = I_net.predict(file_name, minutes, p_steps=(1,))
                 I_net.save(file_name, ys)
                 # *******************************************************************************************************
                 model_path = '/home/ubuntu/FYpredict/experiments/prec-geonet-2024-0724-1803-5860/models/model_latest.pt'
                 net = GeoAttX_P(model_path, root_path=f'/mnt/data1/szj/FY/recent_data/2024/{i:02}{j * 15:02}')
-                # i_data = np.zeros((7, 800, 800))
                 input_data_path = os.path.join(net.get_root_path(), 'input.npy')
-                # root_path = I_net.get_root_path()
                 file_info = prase_filename(file_name)
-                # predict_date = file_info['start'] + timedelta(minutes=minutes)
-                # for idx, band in enumerate(range(9, 16)):
-                #     data = cv2.imread(os.path.join(root_path, f'{predict_date.strftime("%Y%m%d_%H%M%S")}-{band}.tif'),
-                #                       -1)
-                #     i_data[idx] = data
                 os.makedirs(net.get_root_path(), exist_ok=True)
-                # np.save(input_data_path, i_data)
                 np.save(input_data_path, getNPfromHDFClip(133, file_path)[2:, , ])
                 y = net.predict(input_data_path)
                 if y is not None:
