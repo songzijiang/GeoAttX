@@ -13,12 +13,6 @@ from jacksung.utils.data_convert import np2tif
 from util.utils import getFY_coord, prase_filename, get_reference, getNPfromHDF, getFY_coord_min, getFY_coord_clip, \
     getNPfromHDFClip
 from einops import rearrange
-import torch.nn as nn
-from torch.utils.data import DataLoader
-from dataset.datasetPred import Benchmark
-from util.data_parallelV2 import BalancedDataParallel
-import netCDF4 as nc
-import cv2
 
 
 class NoFileException(Exception):
@@ -230,7 +224,7 @@ if __name__ == '__main__':
     x4_path = 'models/GeoAttX_I_x4.pt'
     x12_path = 'models/GeoAttX_I_x12.pt'
     predict_minutes = 180
-    file_path = r'C:\Users\ECNU\内网nextcloud\数据共享\卫星数据\FY4B'
+    file_path = r'data_dir'
     file_name = r'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201001500_20241201002959_4000M_V0001.HDF'
     # file = 'models/FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201001500_20241201002959_4000M_V0001.HDF'
     # file_path = '/'.join(file.split('/')[:-1])
