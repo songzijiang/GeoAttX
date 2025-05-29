@@ -29,8 +29,6 @@ from tqdm import tqdm
 from datetime import datetime, timedelta
 from matplotlib.ticker import MaxNLocator
 from models.GeoNet.m_networkV2 import GeoNet
-from models.unet.unet_model import UNet
-from models.swinir.network_swinir import SwinIR
 import netCDF4 as nc
 import ephem
 import math
@@ -100,15 +98,6 @@ def get_model(args, task_type=None):
         model = GeoNet(window_sizes=args.window_sizes, n_lgab=args.n_lgab, c_in=args.c_in, c_lgan=args.c_lgan,
                        r_expand=args.r_expand, down_sample=args.down_sample, num_heads=args.num_heads,
                        task=task_type if task_type else args.task, downstage=args.downstage)
-    elif args.model == 'unet':
-        model = UNet(c_in=args.c_in)
-    elif args.model == 'swinir':
-        window_size = 10
-        height = (1040 // args.down_sample // window_size + 1) * window_size
-        width = (1600 // args.down_sample // window_size + 1) * window_size
-        model = SwinIR(upscale=args.down_sample, img_size=(height, width), in_chans=4,
-                       window_size=window_size, img_range=1., depths=[6, 6, 6, 6],
-                       embed_dim=108, num_heads=[6, 6, 6, 6], mlp_ratio=2, upsampler='pixelshuffledirect')
     elif args.model == 'deeplab':
         model = None
     else:
@@ -269,7 +258,7 @@ def parse_config(config=None):
     os.environ['CUDA_VISIBLE_DEVICES'] = ','.join([str(x) for x in args.gpu_ids])
 
     # select active gpu devices
-    if args.gpu_ids is not None and torch.cuda.is_available():
+    if args.gpu_ids and torch.cuda.is_available():
         print('use cuda & cudnn for acceleration!')
         print('the gpu id is: {}'.format(args.gpu_ids))
         device = torch.device('cuda')
@@ -364,7 +353,7 @@ def getNPfromHDF(hdf_path, file_type='FDI', lock=None):
     file_info = prase_filename(file_name)
     if lock:
         lock.acquire()
-    ds = nc.Dataset(hdf_path)
+    ds = nc.Dataset(hdf_path, encoding='gbk')
     if lock:
         lock.release()
     if file_type == 'FDI':
