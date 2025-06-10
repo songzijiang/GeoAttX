@@ -24,8 +24,8 @@ class NoFileException(Exception):
 class GeoAttX:
     def __init__(self, config=None, root_path=None, task_type=None):
         self.root_path = None
+        self.timestamp = None
         self.device, self.args = utils.parse_config(config)
-        self.timestamp = cur_timestamp_str()
         self.task_type = task_type
         self.set_root_path(root_path)
 
@@ -33,6 +33,7 @@ class GeoAttX:
         return self.root_path
 
     def set_root_path(self, root_path=None):
+        self.timestamp = cur_timestamp_str()
         self.root_path = os.path.join(root_path if root_path else self.args.save_path,
                                       self.task_type + '-' + self.args.model + '-' + self.timestamp)
 
