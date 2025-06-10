@@ -18,9 +18,12 @@ if __name__ == '__main__':
                           rf'0E_L1-_FDI-_MULT_NOM_{start_str}_{end_str}_4000M_V0001.HDF')
         current_date += timedelta(minutes=15)
     for idx, file_name in enumerate(file_names):
+        print(rf'{idx}/{len(file_names)}, 预测起始文件：{file_name}')
+        if not os.path.exists(os.path.join(file_path, file_name)):
+            print(rf'File {file_name} does not exist, skipping...')
+            continue
         I_net.set_root_path()
         net.set_root_path()
-        print(rf'{idx}/{len(file_names)}, {file_name}')
         ys = I_net.predict(file_name, predict_minutes, p_steps=(4, 1))
         I_net.save(file_name, ys)
         # *******************************************************************************************************
