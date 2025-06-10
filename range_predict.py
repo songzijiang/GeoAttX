@@ -12,7 +12,7 @@ if __name__ == '__main__':
     while current_date <= end_date:
         start_str = current_date.strftime("%Y%m%d%H%M%S")
         end_str = (current_date + timedelta(minutes=14, seconds=59)).strftime("%Y%m%d%H%M%S")
-        file_names.append(rf'FY4B-_AGRI--_N_DISK_{105 if current_date < datetime(year=2025, month=3, day=1) else 133}' +
+        file_names.append(rf'FY4B-_AGRI--_N_DISK_{105 if current_date > datetime(year=2025, month=3, day=1) else 133}' +
                           rf'0E_L1-_FDI-_MULT_NOM_{start_str}_{end_str}_4000M_V0001.HDF')
         current_date += timedelta(minutes=15)
     for idx, file_name in enumerate(file_names):
