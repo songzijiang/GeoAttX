@@ -1,4 +1,5 @@
 import os.path
+import random
 import shutil
 from datetime import datetime, timedelta
 
@@ -35,7 +36,8 @@ class GeoAttX:
     def set_root_path(self, root_path=None):
         self.timestamp = cur_timestamp_str()
         self.root_path = os.path.join(root_path if root_path else self.args.save_path,
-                                      self.task_type + '-' + self.args.model + '-' + self.timestamp)
+                                      self.task_type + '-' + self.args.model + '-' + self.timestamp + '_' + str(
+                                          random.randint(1000, 9999)))
 
     def load_model(self, path):
         model = utils.get_model(self.args, task_type=self.task_type)
