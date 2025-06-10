@@ -31,3 +31,4 @@ if __name__ == '__main__':
             if y is not None:
                 net.save(y, y_date.strftime("%Y%m%d_%H%M%S"))
         current_date += timedelta(minutes=15)
+        print('*' * 20)
