@@ -21,6 +21,7 @@ if __name__ == '__main__':
         print(rf'{idx}/{len(file_names)}, 预测起始文件：{file_name}')
         if not os.path.exists(os.path.join(file_path, file_name)):
             print(rf'File {file_name} does not exist, skipping...')
+            print('*' * 60)
             continue
         I_net.set_root_path()
         net.set_root_path()
