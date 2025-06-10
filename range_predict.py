@@ -9,6 +9,8 @@ if __name__ == '__main__':
     # Predict the range of dates
     file_names = []
     current_date = start_date
+    I_net = GeoAttX_I(file_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
+    net = GeoAttX_P(model_path, config='./configs/config_qpe.yml')
     while current_date <= end_date:
         start_str = current_date.strftime("%Y%m%d%H%M%S")
         end_str = (current_date + timedelta(minutes=14, seconds=59)).strftime("%Y%m%d%H%M%S")
@@ -16,12 +18,13 @@ if __name__ == '__main__':
                           rf'0E_L1-_FDI-_MULT_NOM_{start_str}_{end_str}_4000M_V0001.HDF')
         current_date += timedelta(minutes=15)
     for idx, file_name in enumerate(file_names):
-        I_net = GeoAttX_I(file_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
+        I_net.set_root_path()
+        net.set_root_path()
         print(rf'{idx}/{len(file_names)}, {file_name}')
         ys = I_net.predict(file_name, predict_minutes, p_steps=(4, 1))
         I_net.save(file_name, ys)
         # *******************************************************************************************************
-        net = GeoAttX_P(model_path, config='./configs/config_qpe.yml')
+
         for y_date, y_np in ys.items():
             input_data_path = os.path.join(net.get_root_path(), 'input.npy')
             os.makedirs(net.get_root_path(), exist_ok=True)
@@ -31,4 +34,4 @@ if __name__ == '__main__':
             if y is not None:
                 net.save(y, y_date.strftime("%Y%m%d_%H%M%S"))
         current_date += timedelta(minutes=15)
-        print('*' * 20)
+        print('*' * 60)

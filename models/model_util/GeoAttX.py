@@ -23,14 +23,18 @@ class NoFileException(Exception):
 
 class GeoAttX:
     def __init__(self, config=None, root_path=None, task_type=None):
+        self.root_path = None
         self.device, self.args = utils.parse_config(config)
         self.timestamp = cur_timestamp_str()
         self.task_type = task_type
-        self.root_path = os.path.join(root_path if root_path else self.args.save_path,
-                                      task_type + '-' + self.args.model + '-' + self.timestamp)
+        self.set_root_path(root_path)
 
     def get_root_path(self):
         return self.root_path
+
+    def set_root_path(self, root_path=None):
+        self.root_path = os.path.join(root_path if root_path else self.args.save_path,
+                                      self.task_type + '-' + self.args.model + '-' + self.timestamp)
 
     def load_model(self, path):
         model = utils.get_model(self.args, task_type=self.task_type)
