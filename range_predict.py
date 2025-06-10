@@ -19,10 +19,6 @@ if __name__ == '__main__':
         current_date += timedelta(minutes=15)
     for idx, file_name in enumerate(file_names):
         print(rf'{idx}/{len(file_names)}, 预测起始文件：{file_name}')
-        if not os.path.exists(I_net.get_path_by_filename(file_name)):
-            print(rf'File {file_name} does not exist, skipping...')
-            print('*' * 60)
-            continue
         I_net.set_root_path()
         net.set_root_path()
         ys = I_net.predict(file_name, predict_minutes, p_steps=(4, 1))
