@@ -1,15 +1,9 @@
-import os.path
-from datetime import datetime
-
 import jacksung.utils.fastnumpy as fnp
 import numpy as np
 import torch.utils.data as data
 from jacksung.utils.cache import Cache
-from jacksung.utils.data_convert import np2tif
-from jacksung.utils.multi_task import MultiTasks
-from scipy.ndimage import zoom
 
-from util.utils import getFY_coord, make_alt, getFY_coord_min
+from jacksung.utils.multi_task import MultiTasks
 
 
 class Benchmark(data.Dataset):
@@ -77,13 +71,3 @@ class Benchmark(data.Dataset):
         f, n, p = self.load_data([f_path, n_path, p_path], wait=True)
         self.pre_add_data(idx + self.batch_size)
         return f, n, p
-
-
-if __name__ == '__main__':
-    coord = getFY_coord(133)
-    coord.h = coord.h // 120
-    coord.w = coord.w // 120
-    alt = make_alt(coord, datetime.now().strftime('%Y-%m-%d %H:%M:%S')).astype(np.float32)
-    print(f'*1*{alt.shape}, {alt[10, 10]}*1*')
-    alt = zoom(alt, 12)
-    print(f'*2*{alt.shape}, {alt[120, 120]}*1*')

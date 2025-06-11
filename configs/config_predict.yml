@@ -1,3 +1,10 @@
+save_path: "./results"
+pred_data_path: './dataset'
+## hardware specification
+# specify the GPUs you want to use. [0] means using the first GPU. [1,3] means using second and fourth GPU
+#gpu_ids: [ 3,0,1,2 ]
+gpu_ids: [0]
+# don't change the following settings
 model: 'geonet'
 task: 'pred'
 downstage: 4
@@ -10,9 +17,3 @@ num_heads: 4
 down_sample: 2
 r_expand: 2
 fp: 32
-save_path: "./results"
-pred_data_path: './dataset'
-## hardware specification
-# specify the GPUs you want to use. [0] means using the first GPU. [1,3] means using second and fourth GPU
-#gpu_ids: [ 3,0,1,2 ]
-gpu_ids: [0]

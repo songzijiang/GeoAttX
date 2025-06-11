@@ -1,7 +1,7 @@
 import os.path
-from models.model_util.GeoAttX import GeoAttX_I, GeoAttX_P
+from jacksung.ai.GeoAttX import GeoAttX_I, GeoAttX_P
 import numpy as np
-from configs.predict_config import predict_minutes, file_path, file_name, x1_path, x4_path, x12_path, model_path, \
+from configs.predict_config import predict_minutes, file_path, x1_path, x4_path, x12_path, model_path, \
     start_date, end_date
 from datetime import datetime, timedelta
 

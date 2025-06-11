@@ -1,20 +1,7 @@
-import math
-import os
-import random
-import time
-from scipy.ndimage import zoom
 import numpy as np
-import torch
 import torch.utils.data as data
-from datetime import datetime, timedelta
 from jacksung.utils.multi_task import MultiTasks
-from jacksung.utils.time import Stopwatch
-import jacksung.utils.fastnumpy as fnp
-from tqdm import tqdm
 from jacksung.utils.cache import Cache
-from util.utils import getFY_coord, make_alt
-import threading
-import cv2
 
 
 class Benchmark(data.Dataset):
