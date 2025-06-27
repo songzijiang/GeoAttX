@@ -20,6 +20,6 @@ if __name__ == '__main__':
         y_qpe = P_net.predict(input_data_path)
         os.remove(input_data_path)
         if y_imerg is not None:
-            P_net.save(y_imerg, y_date.strftime("%Y%m%d_%H%M%S"))
+            M_net.save(y_imerg, y_date.strftime("%Y%m%d_%H%M%S"))
         if y_qpe is not None:
             P_net.save(y_qpe, y_date.strftime("%Y%m%d_%H%M%S"))
