@@ -25,3 +25,4 @@ if __name__ == '__main__':
             M_net.save(y_imerg, y_date.strftime("%Y%m%d_%H%M%S"))
         if y_qpe is not None:
             P_net.save(y_qpe, y_date.strftime("%Y%m%d_%H%M%S"))
+
