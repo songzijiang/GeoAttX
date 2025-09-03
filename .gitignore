@@ -39,5 +39,6 @@ make_temp*
 /save_dir/
 db.db
 results
+test.py
 #
 #configs/predict_config.py
