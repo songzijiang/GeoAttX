@@ -8,6 +8,6 @@ num_heads: 4
 down_sample: 2
 r_expand: 2
 fp: 32
-save_path: "/mnt/data2/szj/GeoAttX_server/results"
+save_path: "./results"
 gpu_ids: [ 0 ]
-prec_data_path: '/mnt/data2/szj/GeoAttX_server/dataset'
+prec_data_path: './dataset'

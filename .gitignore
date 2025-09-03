@@ -38,5 +38,6 @@ control*.txt
 make_temp*
 /save_dir/
 db.db
+./results
 #
 #configs/predict_config.py
