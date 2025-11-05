@@ -1,9 +1,9 @@
 from datetime import datetime, timedelta
 
 # common setting
-predict_minutes = 0
+predict_minutes = 15
 file_path = r'dataset'
-file_name = r'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201230000_20241201231459_4000M_V0001.HDF'
+file_name = r'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201231500_20241201232959_4000M_V0001.HDF'
 
 x1_path = 'models/GeoAttX_I_x1.pt'
 x4_path = 'models/GeoAttX_I_x4.pt'
