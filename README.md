@@ -12,7 +12,7 @@ The pre-trained model can be downloaded from Google Drive:
 [GeoAttX_I_x4](https://drive.google.com/file/d/119AyUk8-1m1eknRZoGWwbp3-xDi6t74C/view?usp=sharing)
 [GeoAttX_I_x12](https://drive.google.com/file/d/1ohnmmrSsFZd_y04gg6-N9qOcAwWxtt2H/view?usp=sharing)
 [GeoAttX_P](https://drive.google.com/file/d/1Mp9Qltk2eUbFzscL7s-rgnBwrQXzoS6z/view?usp=sharing)
-[GeoAttX_M](https://drive.google.com/file/d/1klQ9sK0BjIciLSMxWPbfAxoD8-Cw06X4/view?usp=drive_link)
+[GeoAttX_M (Huayu)](https://drive.google.com/file/d/1klQ9sK0BjIciLSMxWPbfAxoD8-Cw06X4/view?usp=drive_link)
 
 # How to run GeoAttX?
 
@@ -27,6 +27,7 @@ models/
     |-- GeoAttX_I_x4.pth
     |-- GeoAttX_I_x12.pth
     |-- GeoAttX_P.pth
+    |-- GeoAttX_M.pth
 ```
 
 ## step2, 
@@ -67,7 +68,7 @@ python predict.py
 ```
 
 ## Notes:
-### GeoAttX_M training and validation data list.
+### GeoAttX_M (Huayu) training and validation data list.
 The data list for GeoAttX_M can be found in the following format:
 ```{path_to_data}/{year}_{month}/{day}/{year}{month}{day}_{hour}_{minute}_{m_jdx}_{m_idx}.npy```
 m_jdx: the middle index of the width.
