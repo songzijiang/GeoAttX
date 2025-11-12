@@ -1,9 +1,9 @@
 # GeoAttX
 
 The official code
-of preprint paper: ["GeoAttX: A Novel Deep Learning Framework for Quarter-Hourly Precipitation Forecasting Using Geostationary Meteorological Satellite Observations"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5168620).
-
-Any questions can be touched by jacksung1995@gmail.com
+of preprint paper: ["GeoAttX: A Novel Deep Learning Framework for Quarter-Hourly Precipitation Forecasting Using Geostationary Meteorological Satellite Observations"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5168620) and 
+["Huayu: Advancing Near-Real-Time Precipitation Estimation Using Satellite-Derived Modeling"]().
+Any questions, please email jacksung1995@gmail.com
 
 ## pre-trained model
 
