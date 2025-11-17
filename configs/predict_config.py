@@ -8,8 +8,8 @@ file_name = r'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201231500_2024120
 x1_path = 'models/GeoAttX_I_x1.pt'
 x4_path = 'models/GeoAttX_I_x4.pt'
 x12_path = 'models/GeoAttX_I_x12.pt'
-model_path = 'models/GeoAttX_P.pt'
-imerg_path = 'models/GeoAttX_M.pt'
+GP_path = 'models/GeoAttX_P.pt'
+HY_path = 'models/GeoAttX_M.pt'
 
 # range_predict.py setting
 start_date = datetime(year=2025, month=6, day=7, hour=0, minute=0)-timedelta(hours=8)
