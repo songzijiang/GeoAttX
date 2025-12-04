@@ -1,20 +1,20 @@
 # GeoAttX
 
 The official code
-of preprint paper: ["GeoAttX: A Novel Deep Learning Framework for Quarter-Hourly Precipitation Forecasting Using Geostationary Meteorological Satellite Observations"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5168620) and 
-["Huayu: Advancing Near-Real-Time Precipitation Estimation Using Satellite-Derived Modeling"]().
+of preprint paper: ["Huayu: Advanced Real-Time Satellite-Based Precipitation Estimation"]() and ["GeoAttX: A Novel Deep Learning Framework for Quarter-Hourly Precipitation Forecasting Using Geostationary Meteorological Satellite Observations"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5168620).
 Any questions, please email jacksung1995@gmail.com
 
 ## pre-trained model
 
 The pre-trained model can be downloaded from Google Drive:
-[GeoAttX_I_x1](https://drive.google.com/file/d/1EcdUOjVr9veytt5NHGYJGkoNw7KVtMh3/view?usp=sharing)
-[GeoAttX_I_x4](https://drive.google.com/file/d/119AyUk8-1m1eknRZoGWwbp3-xDi6t74C/view?usp=sharing)
-[GeoAttX_I_x12](https://drive.google.com/file/d/1ohnmmrSsFZd_y04gg6-N9qOcAwWxtt2H/view?usp=sharing)
-[GeoAttX_P](https://drive.google.com/file/d/1Mp9Qltk2eUbFzscL7s-rgnBwrQXzoS6z/view?usp=sharing)
-[GeoAttX_M (Huayu)](https://drive.google.com/file/d/1klQ9sK0BjIciLSMxWPbfAxoD8-Cw06X4/view?usp=drive_link)
+1.[Huayu (GeoAttX_M)](https://drive.google.com/file/d/1klQ9sK0BjIciLSMxWPbfAxoD8-Cw06X4/view?usp=drive_link)
+2.[GeoAttX_I_x1](https://drive.google.com/file/d/1EcdUOjVr9veytt5NHGYJGkoNw7KVtMh3/view?usp=sharing)
+3.[GeoAttX_I_x4](https://drive.google.com/file/d/119AyUk8-1m1eknRZoGWwbp3-xDi6t74C/view?usp=sharing)
+4.[GeoAttX_I_x12](https://drive.google.com/file/d/1ohnmmrSsFZd_y04gg6-N9qOcAwWxtt2H/view?usp=sharing)
+5.[GeoAttX_P](https://drive.google.com/file/d/1Mp9Qltk2eUbFzscL7s-rgnBwrQXzoS6z/view?usp=sharing)
 
-# How to run GeoAttX?
+
+# How to run Huayu/GeoAttX?
 
 ## step1, 
 download the pre-trained model to folder "models".
@@ -68,8 +68,8 @@ python predict.py
 ```
 
 ## Notes:
-### GeoAttX_M (Huayu) training and validation data list.
-The data list for GeoAttX_M can be found in the following format:
+### Huayu (GeoAttX_M) training and validation data list.
+The data list for GeoAttX_M can be found in 'dataset/GeoAttX_M' in the following format:
 ```{path_to_data}/{year}_{month}/{day}/{year}{month}{day}_{hour}_{minute}_{m_jdx}_{m_idx}.npy```
 m_jdx: the middle index of the width.
 m_idx: the middle index of the height.
