@@ -81,7 +81,11 @@ mt = MultiTasks(8)
 ```
 
 ## Step5, 
-the results will be produced in the "result" folder
+The results will be produced in the "results" folder
+
+'pred*' denotes GeoAttX model results
+'prec*' denotes GeoAttX_P model results
+'prem*' denotes Huayu model results
 
 ## Notes:
 ### Huayu (GeoAttX_M) training and validation data list.
