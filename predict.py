@@ -14,7 +14,7 @@ if __name__ == '__main__':  # common setting
     GP_path = 'models/GeoAttX_P.pt'
     HY_path = 'models/GeoAttX_M.pt'
 
-    current_date = datetime(year=2024, month=12, day=1, hour=23, minute=15)
+    current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
     I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
     ys = I_net.predict(current_date, predict_minutes, p_steps=(4, 1))
     I_net.save(current_date, ys)
