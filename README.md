@@ -53,14 +53,13 @@ current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
 ```
 
 if you only want to use Huayu, you could set the "predict_minutes" to zero.
-
-Note: if you want to predict a result, make sure the files of current date and the previous date are existing.
-
-e.g., predicting 2024-09-16 00:30 with 'predict_minutes=15', you need to make sure the files of 2024-09-16 00:15 and 2024-09-16 00:00 are existing. More details please refer to RGA in paper.
-
 ```python
 predict_minutes = 0
 ```
+Note: if you want to predict a result, make sure the files of current date and the previous date are existing.
+
+e.g., predicting 2024-09-16 00:30 from current date 2024-09-16 00:15 with 'predict_minutes=15', you need to make sure the files of 2024-09-16 00:15 and 2024-09-16 00:00 are existing. More details please refer to RGA in paper.
+
 
 ## Step4, 
 Run the code:
