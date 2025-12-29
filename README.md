@@ -58,9 +58,9 @@ data_dir/
 Set predicted minutes and the start file:
 
 ```python
+from datetime import datetime
 predict_minutes = 180
-file_path = 'data_dir'
-file_name = 'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240501001500_20240501002959_4000M_V0001.HDF'
+current_date = datetime(year=2024, month=4, day=1, hour=0, minute=0)
 ```
 
 ## step4, 
