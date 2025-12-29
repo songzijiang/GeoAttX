@@ -19,7 +19,6 @@ The pre-trained model can be downloaded from Google Drive:
 -- notes, the file tree should be like this:
 ```
 models/
-    |-- GeoNet
     |-- GeoAttX_I_x1.pth
     |-- GeoAttX_I_x4.pth
     |-- GeoAttX_I_x12.pth
@@ -33,22 +32,18 @@ pip install jacksung
 ```
 
 ## Step2, 
-Download FY-4B 4km full disk data from [here](https://satellite.nsmc.org.cn/DataPortal/cn/home/index.html) and set the file path in "predict.py".
+Download FY-4B 4km full disk data from [here](https://satellite.nsmc.org.cn/DataPortal/cn/home/index.html) and set the data path in "config_*.yml".
 
 -- notes, the file tree should be like this:
 
 ```
-data_dir/
+dataset/
     |-- 2024/
-        |-- 04/
+        |-- 12/
             |-- 01/
-                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240401000000_20240401001459_4000M_V0001.HDF
-                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240401001500_20240401002959_4000M_V0001.HDF
                 |-- ...
-        |-- 05/
-            |-- 01/
-                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240501000000_20240501001459_4000M_V0001.HDF
-                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240501001500_20240501002959_4000M_V0001.HDF
+                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201230000_20241201231459_4000M_V0001.HDF
+                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201231500_20241201232959_4000M_V0001.HDF
                 |-- ...
         |-- ...
 ```
@@ -60,6 +55,12 @@ Set predicted minutes and the start file:
 from datetime import datetime
 predict_minutes = 180
 current_date = datetime(year=2024, month=4, day=1, hour=0, minute=0)
+```
+
+if you only want to use Huayu, you could set the "predict_minutes" to zero.
+
+```python
+predict_minutes = 0
 ```
 
 ## Step4, 
