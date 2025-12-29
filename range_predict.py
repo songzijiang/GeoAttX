@@ -25,10 +25,11 @@ if __name__ == '__main__':
         start_str = current_date.strftime("%Y%m%d%H%M%S")
         print(rf'预测起始时间：{current_date.strftime("%Y-%m-%d %H:%M:%S")}')
         I_net.set_root_path()
+        M_net.set_root_path()
         ys = I_net.predict(current_date, predict_minutes, p_steps=(4, 1))
         I_net.save(current_date, ys)
         # *******************************************************************************************************
-        for y_date, y_np in ys.items():
+        for y_date, y_np in ys.items()[-1:]:
             input_data_path = os.path.join(I_net.get_root_path(), 'input.npy')
             os.makedirs(M_net.get_root_path(), exist_ok=True)
             np.save(input_data_path, y_np)
