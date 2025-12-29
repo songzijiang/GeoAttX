@@ -18,7 +18,7 @@ models/
     |-- Huayu.pth
 ```
 
-And install the util package jacksung by:
+And install the util package jacksung (require Python version >=3.11) by:
 ```
 pip install jacksung
 ```
