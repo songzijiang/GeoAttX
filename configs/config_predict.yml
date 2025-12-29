@@ -1,4 +1,5 @@
 save_path: "./results"
+pred_data_path: './dataset'
 ## hardware specification
 # specify the GPUs you want to use. [0] means using the first GPU. [1,3] means using second and fourth GPU
 #gpu_ids: [ 3,0,1,2 ]

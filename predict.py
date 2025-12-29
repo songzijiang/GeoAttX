@@ -2,12 +2,11 @@ import os.path
 from jacksung.ai.GeoAttX import GeoAttX_I, GeoAttX_P, Huayu
 from jacksung.ai.utils.fy import get_agri_file_path
 import numpy as np
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta
 
 if __name__ == '__main__':  # common setting
     predict_minutes = 15
-    file_path = r'dataset'
-    file_name = r'FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20241201231500_20241201232959_4000M_V0001.HDF'
+    norm_path = r'dataset'
 
     x1_path = 'models/GeoAttX_I_x1.pt'
     x4_path = 'models/GeoAttX_I_x4.pt'
@@ -15,12 +14,13 @@ if __name__ == '__main__':  # common setting
     GP_path = 'models/GeoAttX_P.pt'
     HY_path = 'models/GeoAttX_M.pt'
 
-    I_net = GeoAttX_I(file_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
-    ys = I_net.predict(file_name, predict_minutes, p_steps=(4, 1))
-    I_net.save(file_name, ys)
+    current_date = datetime(year=2024, month=9, day=20, hour=12, minute=0) - timedelta(hours=8)
+    I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
+    ys = I_net.predict(current_date, predict_minutes, p_steps=(4, 1))
+    I_net.save(current_date, ys)
     # *******************************************************************************************************
-    P_net = GeoAttX_P(GP_path, config='./configs/config_qpe.yml')
-    M_net = Huayu(HY_path, config='./configs/config_imerg.yml')
+    P_net = GeoAttX_P(norm_path, GP_path, config='./configs/config_qpe.yml')
+    M_net = Huayu(norm_path, HY_path, config='./configs/config_imerg.yml')
     for y_date, y_np in ys.items():
         input_data_path = os.path.join(P_net.get_root_path(), 'input.npy')
         os.makedirs(P_net.get_root_path(), exist_ok=True)
