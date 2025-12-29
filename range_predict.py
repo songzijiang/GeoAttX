@@ -3,12 +3,13 @@ from jacksung.ai.GeoAttX import GeoAttX_I, GeoAttX_P, Huayu
 import numpy as np
 from datetime import datetime, timedelta
 from jacksung.utils.multi_task import MultiTasks
+from jacksung.utils.time import Stopwatch
 
 
 def multi_worker(current_date):
+    st = Stopwatch()
     I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
     M_net = Huayu(norm_path, HY_path, config='./configs/config_imerg.yml')
-    start_str = current_date.strftime("%Y%m%d%H%M%S")
     print(rf'预测起始时间：{current_date.strftime("%Y-%m-%d %H:%M:%S")}')
     I_net.set_root_path()
     M_net.set_root_path()
@@ -25,7 +26,7 @@ def multi_worker(current_date):
         os.remove(input_data_path)
         if y is not None:
             M_net.save(y, y_date.strftime("%Y%m%d_%H%M%S"))
-    print('*' * 60)
+    print(rf'{current_date.strftime("%Y-%m-%d %H:%M:%S")}预测完成，耗时{st.pinch()}')
 
 
 if __name__ == '__main__':
