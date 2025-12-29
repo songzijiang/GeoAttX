@@ -41,7 +41,7 @@ if __name__ == '__main__':
     HY_path = 'models/GeoAttX_M.pt'
 
     # range_predict.py setting
-    start_date = datetime(year=2024, month=9, day=15, hour=0, minute=0)
+    start_date = datetime(year=2024, month=9, day=15, hour=15, minute=0)
     end_date = datetime(year=2024, month=9, day=17, hour=23, minute=59)
 
     current_date = start_date

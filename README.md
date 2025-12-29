@@ -1,12 +1,11 @@
 # GeoAttX
 
 The official code
-of preprint paper: ["Huayu: Advanced Real-Time Precipitation Estimation from Geostationary Satellite"]() and ["GeoAttX: A Novel Deep Learning Framework for Quarter-Hourly Precipitation Forecasting Using Geostationary Meteorological Satellite Observations"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5168620).
-Any questions, please email jacksung1995@gmail.com
+of preprint paper: ["Huayu: Advanced Real-Time Precipitation Estimation from Geostationary Satellite"]() and ["GeoAttX: A Novel Framework for Cloud Image Forecasting Using Geostationary Satellite Observations"]()
 
 # How to run Huayu/GeoAttX?
 
-## step1, 
+## Step1, 
 Download the pre-trained model to the folder "models".
 
 The pre-trained model can be downloaded from Google Drive:
@@ -33,7 +32,7 @@ And install the util package jacksung by:
 pip install jacksung
 ```
 
-## step2, 
+## Step2, 
 Download FY-4B 4km full disk data from [here](https://satellite.nsmc.org.cn/DataPortal/cn/home/index.html) and set the file path in "predict.py".
 
 -- notes, the file tree should be like this:
@@ -54,7 +53,7 @@ data_dir/
         |-- ...
 ```
 
-## step3, 
+## Step3, 
 Set predicted minutes and the start file:
 
 ```python
@@ -63,12 +62,26 @@ predict_minutes = 180
 current_date = datetime(year=2024, month=4, day=1, hour=0, minute=0)
 ```
 
-## step4, 
+## Step4, 
 Run the code:
 
 ```bash
 python predict.py
 ```
+
+or run the batch code:
+
+```bash
+python range_predict.py
+```
+
+please change the number of the threads according to your computer performance:
+```python
+mt = MultiTasks(8)
+```
+
+## Step5, 
+the results will be produced in the "result" folder
 
 ## Notes:
 ### Huayu (GeoAttX_M) training and validation data list.
