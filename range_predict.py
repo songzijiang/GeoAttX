@@ -13,7 +13,7 @@ def multi_worker(current_date):
     I_net.set_root_path()
     M_net.set_root_path()
     ys = I_net.predict(current_date, predict_minutes, p_steps=(4, 1))
-    I_net.save(current_date, ys)
+    I_net.save(current_date, ys, save_target=False)
     # *******************************************************************************************************
     for y_date, y_np in ys.items():
         if y_date != list(ys.keys())[-1]:
