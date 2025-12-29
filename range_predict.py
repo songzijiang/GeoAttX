@@ -15,8 +15,8 @@ if __name__ == '__main__':
     HY_path = 'models/GeoAttX_M.pt'
 
     # range_predict.py setting
-    start_date = datetime(year=2024, month=9, day=15, hour=0, minute=0) - timedelta(hours=8)
-    end_date = datetime(year=2024, month=9, day=21, hour=2, minute=59) - timedelta(hours=8)
+    start_date = datetime(year=2024, month=9, day=15, hour=0, minute=0)
+    end_date = datetime(year=2024, month=9, day=17, hour=23, minute=59)
 
     current_date = start_date
     I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')
