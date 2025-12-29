@@ -38,7 +38,7 @@ if __name__ == '__main__':
     x4_path = 'models/GeoAttX_I_x4.pt'
     x12_path = 'models/GeoAttX_I_x12.pt'
     GP_path = 'models/GeoAttX_P.pt'
-    HY_path = 'models/GeoAttX_M.pt'
+    HY_path = 'models/Huayu.pt'
 
     # range_predict.py setting
     start_date = datetime(year=2024, month=9, day=15, hour=15, minute=0)
