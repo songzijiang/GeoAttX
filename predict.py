@@ -8,11 +8,11 @@ if __name__ == '__main__':  # common setting
     predict_minutes = 15
     norm_path = r'dataset'
 
-    x1_path = 'models/GeoAttX_I_x1.pt'
-    x4_path = 'models/GeoAttX_I_x4.pt'
-    x12_path = 'models/GeoAttX_I_x12.pt'
+    x1_path = 'models/GeoAttX_x1.pt'
+    x4_path = 'models/GeoAttX_x4.pt'
+    x12_path = 'models/GeoAttX_x12.pt'
     GP_path = 'models/GeoAttX_P.pt'
-    HY_path = 'models/GeoAttX_M.pt'
+    HY_path = 'models/Huayu.pt'
 
     current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
     I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml')

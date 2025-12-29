@@ -34,9 +34,9 @@ if __name__ == '__main__':
     predict_minutes = 180
     norm_path = r'dataset'
 
-    x1_path = 'models/GeoAttX_I_x1.pt'
-    x4_path = 'models/GeoAttX_I_x4.pt'
-    x12_path = 'models/GeoAttX_I_x12.pt'
+    x1_path = 'models/GeoAttX_x1.pt'
+    x4_path = 'models/GeoAttX_x4.pt'
+    x12_path = 'models/GeoAttX_x12.pt'
     GP_path = 'models/GeoAttX_P.pt'
     HY_path = 'models/Huayu.pt'
 

@@ -6,17 +6,7 @@ The official code of GeoAttX framework and Huayu.
 ## Step1, 
 Download the pre-trained model to the folder "models".
 
-The pre-trained model can be downloaded from Google Drive:
-
-1.[Huayu](https://drive.google.com/file/d/1klQ9sK0BjIciLSMxWPbfAxoD8-Cw06X4/view?usp=drive_link)
-
-2.[GeoAttX_x1](https://drive.google.com/file/d/1EcdUOjVr9veytt5NHGYJGkoNw7KVtMh3/view?usp=sharing)
-
-3.[GeoAttX_x4](https://drive.google.com/file/d/119AyUk8-1m1eknRZoGWwbp3-xDi6t74C/view?usp=sharing)
-
-4.[GeoAttX_x12](https://drive.google.com/file/d/1ohnmmrSsFZd_y04gg6-N9qOcAwWxtt2H/view?usp=sharing)
-
-5.[GeoAttX_P](https://drive.google.com/file/d/1Mp9Qltk2eUbFzscL7s-rgnBwrQXzoS6z/view?usp=sharing)
+The pre-trained model can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1a_F-BVZkql99m8Y_3xvFPWgyBPhm0zqV?usp=sharing)
 
 -- notes, the file tree should be like this:
 ```
