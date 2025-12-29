@@ -48,7 +48,7 @@ Set predicted minutes and the start file:
 
 ```python
 from datetime import datetime
-predict_minutes = 180
+predict_minutes = 15
 current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
 ```
 
