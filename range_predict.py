@@ -44,7 +44,7 @@ if __name__ == '__main__':
     end_date = datetime(year=2024, month=9, day=17, hour=23, minute=59)
 
     current_date = start_date
-    mt = MultiTasks(6)
+    mt = MultiTasks(8)
     while current_date <= end_date:
         # single thread
         # multi_worker(current_date)
