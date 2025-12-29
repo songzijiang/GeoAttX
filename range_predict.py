@@ -41,8 +41,8 @@ if __name__ == '__main__':
     HY_path = 'models/Huayu.pt'
 
     # range_predict.py setting
-    start_date = datetime(year=2024, month=9, day=15, hour=0, minute=0)
-    end_date = datetime(year=2024, month=9, day=17, hour=23, minute=59)
+    start_date = datetime(year=2024, month=9, day=15, hour=16, minute=0)
+    end_date = datetime(year=2024, month=9, day=15, hour=18, minute=0)
 
     current_date = start_date
     mt = MultiTasks(8)
