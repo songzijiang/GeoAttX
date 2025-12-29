@@ -1,6 +1,6 @@
 # GeoAttX
 
-The official code of GeoAttX framework and Huayu.
+The official quick start code of GeoAttX framework and Huayu. This demo code is based on PyTorch and requires GPU. 
 # How to run Huayu/GeoAttX?
 
 ## Step1, 
@@ -88,6 +88,13 @@ The results will be produced in the "results" folder
 'prem*' denotes Huayu model results
 
 ## Notes:
+### How to chang the target area?
+set the 'area' in
+```python
+I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml',area=((100, 140, 10), (20, 60, 10)))
+```
+'((100, 140, 10), (20, 60, 10))' means from longitude 100°E to 140°E, and from latitude 20°N to 60°N. Please do not change the step size (10).
+The range of both longtitude and latitude should be '40' and in the area from 45°E to 165°E and from -60°S to 60°N.
 ### Huayu (GeoAttX_M) training and validation data list.
 The data list for GeoAttX_M can be found in 'dataset/GeoAttX_M' in the following format:
 ```{path_to_data}/{year}_{month}/{day}/{year}{month}{day}_{hour}_{minute}_{m_jdx}_{m_idx}.npy```
