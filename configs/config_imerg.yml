@@ -10,4 +10,3 @@ r_expand: 2
 fp: 32
 save_path: "./results"
 gpu_ids: [ 0 ]
-prec_data_path: './dataset'

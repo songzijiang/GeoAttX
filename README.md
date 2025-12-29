@@ -55,7 +55,7 @@ data_dir/
 ```
 
 ## step3, 
-Set predicted minutes and the start file in "predict.py":
+Set predicted minutes and the start file:
 
 ```python
 predict_minutes = 180
