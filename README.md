@@ -4,7 +4,7 @@ The official quick start code of GeoAttX framework and Huayu. This demo code is 
 # How to run Huayu/GeoAttX?
 
 ## Step1, 
-Download the pre-trained model to the folder "models".
+Download the pre-trained models to the folder "models".
 
 The pre-trained model can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1a_F-BVZkql99m8Y_3xvFPWgyBPhm0zqV?usp=sharing)
 
@@ -53,22 +53,20 @@ current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
 ```
 
 if you only want to use Huayu, you could set the "predict_minutes" to zero.
-```python
-predict_minutes = 0
-```
+Or only use Huayu like this:
 Note: if you want to predict a result, make sure the files of current date and the previous date are existing.
 
 e.g., predicting 2024-09-16 00:30 from current date 2024-09-16 00:15 with 'predict_minutes=15', you need to make sure the files of 2024-09-16 00:15 and 2024-09-16 00:00 are existing. More details please refer to RGA in paper.
 
 
 ## Step4, 
-Run the code:
+### Run the code:
 
 ```bash
 python predict.py
 ```
 
-or run the batch code:
+### or run the batch code:
 
 ```bash
 python range_predict.py
@@ -83,12 +81,14 @@ mt = MultiTasks(8)
 The results will be produced in the "results" folder
 
 'pred*' denotes GeoAttX model results
+
 'prec*' denotes GeoAttX_P model results
+
 'prem*' denotes Huayu model results
 
 ## Notes:
 ### How to chang the target area?
-set the 'area' in
+set the 'area' when initializing the model, e.g.,
 ```python
 I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml',area=((100, 140, 10), (20, 60, 10)))
 ```

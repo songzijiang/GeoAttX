@@ -26,12 +26,12 @@ if __name__ == '__main__':  # common setting
         os.makedirs(P_net.get_root_path(), exist_ok=True)
         os.makedirs(M_net.get_root_path(), exist_ok=True)
         np.save(input_data_path, y_np)
-        y_imerg = M_net.predict(input_data_path)
+        hy = M_net.predict(input_data_path)
         y_qpe = P_net.predict(input_data_path)
         os.remove(input_data_path)
-        print(y_imerg.shape)
+        print(hy.shape)
         print(y_qpe.shape)
-        if y_imerg is not None:
-            M_net.save(y_imerg, y_date.strftime("%Y%m%d_%H%M%S"))
+        if hy is not None:
+            M_net.save(hy, y_date.strftime("%Y%m%d_%H%M%S"))
         if y_qpe is not None:
             P_net.save(y_qpe, y_date.strftime("%Y%m%d_%H%M%S"))
