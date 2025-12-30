@@ -76,7 +76,10 @@ please change the number of the threads according to your computer performance:
 ```python
 mt = MultiTasks(8)
 ```
-
+### or run the Huayu only code:
+```bash
+python Huayu.py
+```
 ## Step5, 
 The results will be produced in the "results" folder
 
