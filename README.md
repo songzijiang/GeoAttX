@@ -52,8 +52,6 @@ predict_minutes = 15
 current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
 ```
 
-if you only want to use Huayu, you could set the "predict_minutes" to zero.
-Or only use Huayu like this:
 Note: if you want to predict a result, make sure the files of current date and the previous date are existing.
 
 e.g., predicting 2024-09-16 00:30 from current date 2024-09-16 00:15 with 'predict_minutes=15', you need to make sure the files of 2024-09-16 00:15 and 2024-09-16 00:00 are existing. More details please refer to RGA in paper.
@@ -66,17 +64,7 @@ e.g., predicting 2024-09-16 00:30 from current date 2024-09-16 00:15 with 'predi
 python predict.py
 ```
 
-### or run the batch code:
-
-```bash
-python range_predict.py
-```
-
-please change the number of the threads according to your computer performance:
-```python
-mt = MultiTasks(8)
-```
-### or run the Huayu only code:
+### or run the Huayu-only:
 ```bash
 python Huayu.py
 ```
@@ -96,7 +84,7 @@ set the 'area' when initializing the model, e.g.,
 I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml',area=((100, 140, 10), (20, 60, 10)))
 ```
 '((100, 140, 10), (20, 60, 10))' means from longitude 100°E to 140°E, and from latitude 20°N to 60°N. Please do not change the step size (10).
-The range of both longtitude and latitude should be '40' and in the area from 45°E to 165°E and from -60°S to 60°N.
+The length of both longtitude and latitude should be '40' and in the area from 45°E to 165°E and from 60°S to 60°N.
 ### Huayu (GeoAttX_M) training and validation data list.
 The data list for GeoAttX_M can be found in 'dataset/GeoAttX_M' in the following format:
 ```{path_to_data}/{year}_{month}/{day}/{year}{month}{day}_{hour}_{minute}_{m_jdx}_{m_idx}.npy```
