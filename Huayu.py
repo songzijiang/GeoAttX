@@ -12,6 +12,7 @@ if __name__ == '__main__':  # common setting
     os.makedirs(M_net.get_root_path(), exist_ok=True)
     hy = M_net.predict(
         satellite_file=rf'dataset/2024/9/16/FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240916000000_20240916001459_4000M_V0001.HDF')
+    # hy stands for the precipitation (mm/hhr), if you want to get the precipitation in 15 minutes, please ues "hy / 2".
     print(hy.shape)
     if hy is not None:
         M_net.save(hy / 2, current_date.strftime("%Y%m%d_%H%M%S"))
