@@ -1,92 +1,171 @@
 # GeoAttX
 
-The official quick start code of GeoAttX framework and Huayu. This demo code is based on PyTorch and requires GPU. 
-# How to run Huayu/GeoAttX?
+Official quick-start code for the GeoAttX framework and Huayu.
 
-## Step1, 
-Download the pre-trained models to the folder "models".
+This demo is based on PyTorch and requires a CUDA-capable GPU. The core model APIs are provided by the `jacksung` Python package.
 
-The pre-trained model can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1a_F-BVZkql99m8Y_3xvFPWgyBPhm0zqV?usp=sharing)
+## Requirements
 
--- notes, the file tree should be like this:
-```
-models/
-    |-- GeoAttX_x1.pth
-    |-- GeoAttX_x4.pth
-    |-- GeoAttX_x12.pth
-    |-- GeoAttX_P.pth
-    |-- Huayu.pth
-```
+- Python >= 3.11
+- CUDA-capable GPU
+- PyTorch
+- `jacksung`
 
-And install the util package jacksung (require Python version >=3.11) by:
-```
+Install the utility package:
+
+```bash
 pip install jacksung
 ```
 
-## Step2, 
-Download FY-4B 4km full disk data from [here](https://satellite.nsmc.org.cn/DataPortal/cn/home/index.html) and set the data path in "config_*.yml".
+## Pre-trained Models
 
-or
+Download the pre-trained models from [Google Drive](https://drive.google.com/drive/folders/1a_F-BVZkql99m8Y_3xvFPWgyBPhm0zqV?usp=sharing).
 
-download demo data from [here](https://drive.google.com/drive/folders/1KZP9R-ViOM5gEUCRrlcsBd0zaEgxKVhh?usp=sharing) put in the folder "dataset/2024/9/16".
--- notes, the file tree should be like this:
+Place them in the `models/` directory:
 
+```text
+models/
+  GeoAttX_x1.pt
+  GeoAttX_x4.pt
+  GeoAttX_x12.pt
+  GeoAttX_P.pt
+  Huayu.pt
 ```
+
+## Data Preparation
+
+Download FY-4B AGRI 4 km full-disk data from the [NSMC Data Portal](https://satellite.nsmc.org.cn/DataPortal/cn/home/index.html), then set the data path in the corresponding config file under `configs/`.
+
+You can also download the demo data from [Google Drive](https://drive.google.com/drive/folders/1KZP9R-ViOM5gEUCRrlcsBd0zaEgxKVhh?usp=sharing).
+
+Place the demo data as follows:
+
+```text
 dataset/
-    |-- 2024/
-        |-- 9/
-            |-- 16/
-                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240916000000_20240916001459_4000M_V0001.HDF
-                |-- FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240916001500_20240916002959_4000M_V0001.HDF
-                |-- ...
-                |-- ...
-        |-- ...
+  2024/
+    9/
+      16/
+        FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240916000000_20240916001459_4000M_V0001.HDF
+        FY4B-_AGRI--_N_DISK_1050E_L1-_FDI-_MULT_NOM_20240916001500_20240916002959_4000M_V0001.HDF
+        ...
 ```
 
-## Step3, 
-### Run the code:
+The repository also includes normalization/statistics files in `dataset/`, which are required by the demo scripts.
 
-Set predicted minutes and the start file:
+## Run Prediction
+
+Edit `predict.py` to set the forecast lead time and start time:
 
 ```python
-from datetime import datetime
 predict_minutes = 15
 current_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
 ```
 
-Note: if you want to predict a result, make sure the files of current date and the previous date are existing.
-
-e.g., predicting 2024-09-16 00:30 from current date 2024-09-16 00:15 with 'predict_minutes=15', you need to make sure the files of 2024-09-16 00:15 and 2024-09-16 00:00 are existing. More details please refer to RGA in paper.
-
+Then run:
 
 ```bash
 python predict.py
 ```
 
-### or run the Huayu-only:
+`predict.py` runs `GeoAttX_I` (`GeoAttX`) first, then feeds the prediction into `GeoAttX_P` for precipitation estimation.
+
+Make sure the FY-4B files for the current time and required previous time steps exist. For example, to predict from `2024-09-16 00:30` with `predict_minutes = 15`, the required preceding satellite files must be available. See the RGA section in the paper for details.
+
+`GeoAttX_P` outputs precipitation stands the 15-minute precipitation `mm`.
+## Batch Prediction
+
+Use `range_predict.py` to run prediction over a time range:
+
+```python
+start_date = datetime(year=2024, month=9, day=16, hour=0, minute=15)
+end_date = datetime(year=2024, month=9, day=16, hour=0, minute=30)
+```
+
+Run:
+
+```bash
+python range_predict.py
+```
+
+The script uses `MultiTasks(8)` by default. Adjust the worker count according to your GPU memory and runtime environment.
+
+## Run Huayu Only
+
+Edit the satellite file path in `Huayu.py`, then run:
+
 ```bash
 python Huayu.py
 ```
-## Step4, 
-The results will be produced in the "results" folder
 
-'pred*' denotes GeoAttX model results
+Huayu outputs precipitation in `mm/hhr`. To obtain 15-minute precipitation, use `hy / 2`.
 
-'prec*' denotes GeoAttX_P model results
+## Configuration Files
 
-'prem*' denotes Huayu model results
+- `configs/config_predict.yml`: `GeoAttX_I` prediction settings
+- `configs/config_qpe.yml`: `GeoAttX_P` precipitation estimation settings
+- `configs/config_imerg.yml`: Huayu settings
 
-## Notes:
-### How to chang the target area?
-set the 'area' when initializing the model, e.g.,
+Common options:
+
+- `save_path`: output directory, default `./results`
+- `gpu_ids`: GPU indices, for example `[0]`
+- `pred_data_path` / `prec_data_path`: input data root used by the corresponding task
+
+Do not change the model architecture parameters unless you also use matching checkpoints.
+
+## Results
+
+Outputs are saved to `results/`.
+
+Filename prefixes:
+
+- `pred*`: `GeoAttX_I` prediction results
+- `prec*`: `GeoAttX_P` precipitation results
+- `prem*`: Huayu precipitation results
+
+## Change Target Area
+
+Set `area` when initializing `GeoAttX_I`:
+
 ```python
-I_net = GeoAttX_I(norm_path, x1_path, x4_path, x12_path, config='./configs/config_predict.yml',area=((100, 140, 10), (20, 60, 10)))
+I_net = GeoAttX_I(
+    norm_path,
+    x1_path,
+    x4_path,
+    x12_path,
+    config="./configs/config_predict.yml",
+    area=((100, 140, 10), (20, 60, 10)),
+)
 ```
-'((100, 140, 10), (20, 60, 10))' means from longitude 100°E to 140°E, and from latitude 20°N to 60°N. Please do not change the step size (10).
-The length of both longtitude and latitude should be '40' and in the area from 45°E to 165°E and from 60°S to 60°N.
-### Huayu (GeoAttX_M) training and validation data list.
-The data list for GeoAttX_M can be found in 'dataset/GeoAttX_M' in the following format:
-```{path_to_data}/{year}_{month}/{day}/{year}{month}{day}_{hour}_{minute}_{m_jdx}_{m_idx}.npy```
-where "m_jdx" means the middle index of the width and "m_idx" means the middle index of the height.
-### Contact us
+
+This means longitude `100E` to `140E` and latitude `20N` to `60N`.
+
+Notes:
+
+- Keep the step size as `10`
+- Longitude and latitude ranges should each span `40`
+- Valid area bounds are `45E` to `165E` and `60S` to `60N` (decided by FY-4B's coverage)
+
+## GeoAttX_M (Huayu) Data List
+
+The training and validation lists for `GeoAttX_M` are in:
+
+```text
+dataset/GeoAttX_M/train.txt
+dataset/GeoAttX_M/test.txt
+```
+
+Format:
+
+```text
+{path_to_data}/{year}_{month}/{day}/{year}{month}{day}_{hour}_{minute}_{m_jdx}_{m_idx}.npy
+```
+
+where:
+
+- `m_jdx`: middle index of width
+- `m_idx`: middle index of height
+
+## Contact
+
 Email: jacksung1995@gmail.com
