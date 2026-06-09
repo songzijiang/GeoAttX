@@ -1,6 +1,6 @@
 # GeoAttX
 
-Official quick-start code for the GeoAttX framework and Huayu.
+Official quick-start code for the GeoAttX framework and [Huayu](https://doi.org/10.1016/j.jag.2026.105307).
 
 This demo is based on PyTorch and requires a CUDA-capable GPU. The core model APIs are provided by the `jacksung` Python package.
 
