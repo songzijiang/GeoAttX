@@ -6,7 +6,7 @@ if __name__ == '__main__':
     norm_path = r'dataset'
     HY_path = 'models/Huayu.pt'
     config = './configs/config_imerg.yml'
-    # set up the longitude and latitude: from 100° E to 140° E and ° E from 20° N to 60° N.
+    # set up the longitude and latitude: from 100° E to 140° E and from 20° N to 60° N.
     area = ((100, 140, 10), (20, 60, 10))
     M_net = Huayu(norm_path, HY_path, config=config, print_timelog=True, area=area)
     os.makedirs(M_net.get_root_path(), exist_ok=True)
